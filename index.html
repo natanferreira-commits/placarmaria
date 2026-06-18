@@ -476,7 +476,11 @@ const CASAS = [
 // URL do Apps Script que grava os leads na planilha Google.
 // Cole aqui a URL do "deploy" do Web App (ver SETUP-PLANILHA.md). Enquanto for "",
 // o envio só mostra a confirmação (modo demo, não grava).
-const SCRIPT_URL = ""; // TODO Maria: criar planilha + Apps Script PRÓPRIOS (separado do Rayo) e colar a URL aqui. Enquanto vazio = modo demo (não grava).
+// Reaproveita a MESMA planilha/Apps Script do Rayo — sem precisar criar nada novo.
+// Os leads da Maria caem na mesma aba "Leads"; separe pela coluna Casa (Stake = Maria)
+// ou pelo campo "afiliado" (AFILIADO abaixo).
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYwAZ3nBqkhHYYMEncL2QJ3BTMWAE1Rb-ADzGKhuhYoKfEyU35ABhlq7pBcC3Eu5HoEg/exec";
+const AFILIADO = "Maria";
 
 /* =================================================================== */
 
@@ -695,6 +699,7 @@ async function submitPalpite(){
   try { printBase64 = await prepararPrint(fileSel); } catch(e){ console.warn('falha ao preparar print', e); }
 
   const payload = {
+    afiliado: AFILIADO,
     nome, whatsapp:whats, casa:casaSel,
     placar:`${placar.BR} x ${placar.HT}`,
     placar_br:placar.BR, placar_ht:placar.HT,
